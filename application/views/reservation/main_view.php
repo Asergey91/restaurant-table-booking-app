@@ -9,7 +9,11 @@
           This is mostly a coding project so while the GUI is a little barren, most of the work was done on the back-end. There is a lot of code dealing with validation, AJAX requests and model relationships as well as seeding data. If you would like to look at the code please check out the link to github below.<br><br>
           <b>Technologies Used:</b> PHP, CodeIgniter, JS, AJAX, Bootstrap<br><br>
           <b>Methodologies:</b> MVC (kinda...), Material design, Responsive design<br><hr>
-          <h2 class='text-right'></h2>
+          <h2 class='text-right'>
+            <a href='<?php $base_url?>index.php/reservation/customer_view' class="btn btn-raised btn-default"> Customer-view </a>
+            <a href='<?php $base_url?>index.php/reservation/owner_view' class="btn btn-raised btn-default"> Admin-view </a>
+            <a href='https://github.com/Asergey91/restaurant-table-booking-app' class="btn btn-raised btn-default"> Github </a>
+          </h2>
         <h3 class='text-right'>
           
         </h3>
