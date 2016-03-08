@@ -10,9 +10,9 @@
           <b>Technologies Used:</b> PHP, CodeIgniter, JS, AJAX, Bootstrap<br><br>
           <b>Methodologies:</b> MVC (kinda...), Material design, Responsive design<br><hr>
           <h2 class='text-right'>
-            <a href='<?php $base_url?>index.php/reservation/customer_view' class="btn btn-raised btn-default"> Customer-view </a>
-            <a href='<?php $base_url?>index.php/reservation/owner_view' class="btn btn-raised btn-default"> Admin-view </a>
-            <a href='https://github.com/Asergey91/restaurant-table-booking-app' class="btn btn-raised btn-default"> Github </a>
+            <a href='<?php echo $base_url?>index.php/reservation/customer_view' class="btn btn-raised btn-primary"> Customer-view </a>
+            <a href='<?php echo $base_url?>index.php/reservation/owner_view' class="btn btn-raised btn-primary"> Admin-view </a>
+            <a href='https://github.com/Asergey91/restaurant-table-booking-app' class="btn btn-raised btn-primary"> Github </a>
           </h2>
         <h3 class='text-right'>
           
