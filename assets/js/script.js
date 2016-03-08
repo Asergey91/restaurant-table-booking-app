@@ -18,7 +18,7 @@ $(document).ready(function(){
         i++;
       }
     });
-    /*$.ajax({
+    $.ajax({
       type: "POST",
       url: "https://code-igniter-blog-asergey91.c9users.io/index.php/reservation/make_reservation",
       dataType: 'json',
@@ -47,7 +47,6 @@ $(document).ready(function(){
         $('.app_submit').show('slow');
         $('.error_capacity').show('slow');
       }
-    });*/
-    
+    });
   });
 });

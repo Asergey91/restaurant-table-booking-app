@@ -27,6 +27,8 @@ class Setup_model extends CI_Model {
       id int(11) NOT NULL AUTO_INCREMENT,
       name varchar(25) NOT NULL,
       owner_id int(11) NOT NULL,
+      open int(11) NOT NULL,
+      close int(11) NOT NULL,
       FOREIGN KEY (owner_id) REFERENCES owner(id),
       PRIMARY KEY (id)
     );',
@@ -98,25 +100,25 @@ class Setup_model extends CI_Model {
     for($i=0; $i<20; $i++){
       $tn=$this->faker->randomElement($array = [2, 4, 6, 8, 2, 4, 6, 2, 4, 2]);
       $data = [
-        'name'=>'table for '.$tn,
+        'name'=>'Table for '.$tn,
         'size'=>$tn
       ];
       $this->db->insert($this->tables[2], $data);
     }
     //SEEDING RESERVATIONS
-    $time=mktime(8, 0, 0, 3, 6, 2016);
-    //from sunday-thursday
-    for($b=0; $b<7; $b++){
+    $time=mktime(8, 0, 0, 3, 7, 2016);
+    //from mon-sat
+    for($b=0; $b<6; $b++){
       //from 8am-5pm
-      for($a=0; $a<18; $a++){
-        //rand 2 reserv every 30mins
-        for($i=0; $i<rand(0,2); $i++){
+      for($a=0; $a<11; $a++){
+        //2 reserv every 60mins
+        for($i=0; $i<2; $i++){
           $length=60*60;
           $data = [
             'start'=>$time,
             'end'=>$time+$length,
-            'size'=>rand(1, 8),
-            'customer_id'=>$this->faker->numberBetween($min = 1, $max = 200)
+            'size'=>$this->faker->numberBetween($min = 1, $max = 8),
+            'customer_id'=>$this->faker->unique()->numberBetween($min = 1, $max = 200)
           ];
           $temp=$this->available_tables($data['start'], $data['end'], $data['size']);
           if(!empty($temp)){
@@ -127,12 +129,10 @@ class Setup_model extends CI_Model {
           }
           //var_dump($temp);
           //echo PHP_EOL.'________________________________________'.PHP_EOL;
-          $this->db->insert($this->tables[4], $data);
-          
         }
-        $time=$time+(30*60);
+        $time=$time+(60*60);
   	  }
-  	  $time=$time+(15*60*60);
+  	  $time=$time+(13*60*60);
     }
     //SEEDING CUSTOMERS
     for($i=0; $i<200; $i++){
@@ -156,8 +156,34 @@ class Setup_model extends CI_Model {
 	}
 	
 	
-	
-  //check tables
+	public function available_tables($start, $end, $size){
+	  $res_query1=$this->db->get_where('reservation', [
+	    'start <'=>$start,
+	    'start <='=>$end
+	  ])->result_array();
+	  $res_query2=$this->db->get_where('reservation', [
+	    'end >='=>$start,
+	    'end >'=>$end
+	  ])->result_array();
+	  $tab_query=$this->db->get_where('physical_table', [
+	    'size >='=>$size
+	  ])->result_array();
+	  $query=array_merge($res_query1, $res_query2, $tab_query);
+	  $available_tables=[];
+	  foreach($query as $row){
+	    if(isset($row['table_id'])){
+	      $available_tables[$row['table_id']]=0;
+	    }
+	    if(isset($row['name'])){
+	      $available_tables[$row['id']]=$row['size'];
+	    }
+	  }
+	  
+	  $available_tables = array_filter($available_tables);
+	  asort($available_tables);
+    return $available_tables;
+	}
+  /*check tables
   public function taken_tables($start, $end, $size){
     $taken_tables=[];
     $query=$this->db->get('reservation');
@@ -199,5 +225,5 @@ class Setup_model extends CI_Model {
     }
     asort($available_tables);
     return $available_tables;
-  }
+  }*/
 }

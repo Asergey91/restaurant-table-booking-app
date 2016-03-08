@@ -11,11 +11,7 @@ body {
   box-shadow: 0px 2px 5px #666;
   z-index: -1;
 }
-.app_links a{
-  color: #fff;
-  font-size: 15px;
-}
-.customer_input {
+.customer_input{
   margin-top: 5%;
 }
 .error_capacity{
@@ -29,4 +25,7 @@ body {
 }
 .app_loading{
   display: none;
+}
+.owner_panel{
+  margin-top: 35px;
 }

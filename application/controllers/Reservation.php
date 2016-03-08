@@ -9,7 +9,7 @@ class Reservation extends CI_Controller {
 	  date_default_timezone_set('CET');
 	}
 	public function owner_view(){
-	  $data['reservations']=$this->reservation_model->get_all();
+	  $data['reservations']=$this->reservation_model->get_today();
 	  $this->load->view('templates/header');
 	  $this->load->view('reservation/owner_view', $data);
 	  $this->load->view('templates/footer');
@@ -27,10 +27,11 @@ class Reservation extends CI_Controller {
 	    'status'=>$result[0],
 	    'error'=>$result[1]
 	  ];
-	  echo json_encode($data);
-	  //if(isset($result[2])){
-	    //$this->reservation_model->create($result[2]);
-	  //}
+	  if(isset($result[2])){
+	    if($this->reservation_model->create($result[2])){
+	      echo json_encode($data);
+	    }
+	  }
 	}
 	public function validate_reservation($input){
 	  $result=['fail', 'There was an error!', false];
@@ -88,7 +89,7 @@ class Reservation extends CI_Controller {
     }
     $fordb=[
       'size'=>$input['size'],
-      'table_id'=>array_keys($tables)[0],
+      'table_id'=>array_keys($tables[1])[0],
       'start'=>$time[2],
       'end'=>$time[3],
       'first_name'=>$input['first_name'],
@@ -99,5 +100,7 @@ class Reservation extends CI_Controller {
     $result=['success', 'No errors here!', $fordb];
 	  return $result;
 	}
-	
+	public function debug(){
+	  
+	}
 }
