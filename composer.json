@@ -11,7 +11,9 @@
 		"source": "https://github.com/bcit-ci/CodeIgniter"
 	},
 	"require": {
-		"php": ">=5.2.4"
+		"php": ">=5.2.4",
+		"respect/validation": "^1.0",
+		"egulias/email-validator": "^1.2"
 	},
 	"require-dev": {
 		"mikey179/vfsStream": "1.1.*"

@@ -15,4 +15,7 @@ class Setup extends CI_Controller {
 	public function seed(){
 	  $this->setup_model->seed();
 	}
+	public function test(){
+	  
+	}
 }

@@ -1,0 +1,32 @@
+body {
+  background-image: url('../img/mb-bg-fb-04.jpg');
+  background-color: #eee;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.app_header{
+  background-color: #009587;
+  color: #fff;
+  margin-bottom: -55px;
+  box-shadow: 0px 2px 5px #666;
+  z-index: -1;
+}
+.app_links a{
+  color: #fff;
+  font-size: 15px;
+}
+.customer_input {
+  margin-top: 5%;
+}
+.error_capacity{
+  display: none;
+}
+.customer_success {
+  display: none;
+  margin-top: 5%;
+  color: #0CC964;
+  
+}
+.app_loading{
+  display: none;
+}

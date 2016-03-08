@@ -1,4 +1,8 @@
 <?php
+/*
+THIS CLASS IS FOR BASIC APP SETUP
+IT HAS MIGRATIONS AND SEEDING DATA
+*/
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Setup_model extends CI_Model {
   public function __construct(){
@@ -7,7 +11,7 @@ class Setup_model extends CI_Model {
     $this->faker=Faker\Factory::create();
   }
   //TABLE NAMES
-  public $tables=['owner', 'restaurant', 'physical_table', 'customer', 'reservation', 'table_reservation'];
+  public $tables=['owner', 'restaurant', 'physical_table', 'customer', 'reservation'];
   //CREATES TABLES
   public function create_tables(){
     $this->db->simple_query('SET FOREIGN_KEY_CHECKS = 0;');
@@ -49,15 +53,8 @@ class Setup_model extends CI_Model {
       end varchar(25) NOT NULL,
       size int(11) NOT NULL,
       customer_id int(11) NOT NULL,
-      FOREIGN KEY (customer_id) REFERENCES customer(id),
-      PRIMARY KEY (id)
-    );',
-    //table_reservations(for many to many associations between tables and reservations)
-    'CREATE TABLE '.$this->tables[5].' (
-      id int(11) NOT NULL AUTO_INCREMENT,
-      reservation_id int(11) NOT NULL,
       table_id int(11) NOT NULL,
-      FOREIGN KEY (reservation_id) REFERENCES reservation(id),
+      FOREIGN KEY (customer_id) REFERENCES customer(id),
       FOREIGN KEY (table_id) REFERENCES physical_table(id),
       PRIMARY KEY (id)
     );'];
@@ -106,36 +103,44 @@ class Setup_model extends CI_Model {
       ];
       $this->db->insert($this->tables[2], $data);
     }
-    
     //SEEDING RESERVATIONS
     $time=mktime(8, 0, 0, 3, 6, 2016);
     //from sunday-thursday
     for($b=0; $b<7; $b++){
       //from 8am-5pm
-      for($a=0; $a<19; $a++){
-        //every 30mins
+      for($a=0; $a<18; $a++){
+        //rand 2 reserv every 30mins
         for($i=0; $i<rand(0,2); $i++){
-          $length=($this->faker->randomElement($array = [30, 60, 90, 120, 150, 180]))*60;
+          $length=60*60;
           $data = [
             'start'=>$time,
             'end'=>$time+$length,
-            'size'=>rand(1, 6),
+            'size'=>rand(1, 8),
             'customer_id'=>$this->faker->numberBetween($min = 1, $max = 200)
           ];
-          echo(gmdate("m-d\TH:i", $data['start']).' TO '.gmdate("m-d\TH:i", $data['end']).PHP_EOL);
+          $temp=$this->available_tables($data['start'], $data['end'], $data['size']);
+          if(!empty($temp)){
+            $data['table_id']=array_keys($temp)[0];
+            $this->db->insert($this->tables[4], $data);
+            var_dump($temp);
+            echo 'FUCK YOU PHP'.PHP_EOL.'________________________________________'.PHP_EOL;
+          }
+          //var_dump($temp);
+          //echo PHP_EOL.'________________________________________'.PHP_EOL;
+          $this->db->insert($this->tables[4], $data);
+          
         }
         $time=$time+(30*60);
   	  }
   	  $time=$time+(15*60*60);
     }
-    $this->db->insert($this->tables[4], $data);
     //SEEDING CUSTOMERS
     for($i=0; $i<200; $i++){
       $data = [
         'first_name'=>$this->faker->unique()->firstName($gender = 'male'|'female'),
         'last_name'=>$this->faker->unique()->lastName($gender = 'male'|'female'),
         'email'=>$this->faker->unique()->email,
-        'tel'=>$this->faker->unique()->numberBetween($min = 100000000, $max = 999999999)
+        'tel'=>$this->faker->unique()->numberBetween($min = 1000000000, $max = 9999999999)
       ];
       $this->db->insert($this->tables[3], $data);
     }
@@ -149,4 +154,50 @@ class Setup_model extends CI_Model {
     //
     $this->db->simple_query('SET FOREIGN_KEY_CHECKS = 1;');
 	}
+	
+	
+	
+  //check tables
+  public function taken_tables($start, $end, $size){
+    $taken_tables=[];
+    $query=$this->db->get('reservation');
+    $i=0;
+    foreach ($query->result() as $row){
+      //CHECK THE TABLES ALREADY TAKEN DURING THE DURATION OF THE RESERVATION
+      if (($row->start<=$start && $row->end>$start)||($row->start<$end && $row->end>=$end)){
+        if($row->table_id){
+          $taken_tables[$i]=$row->table_id;
+          $i++;
+        }
+      }
+    }
+    return $taken_tables;
+  }
+  public function available_tables($start, $end, $size){
+    $tt=$this->taken_tables($start, $end, $size);
+    $query=$this->db->get('physical_table');
+    $available_tables=[];
+    foreach ($query->result() as $row){
+      if(!empty($tt)){
+        foreach ($tt as $ttrow) {
+          if(($ttrow==$row->id)||($row->size<$size)){
+            
+          }
+          else{
+            $available_tables[$row->id]=$row->size;
+          }
+        }
+      }
+      else{
+        if($row->size<$size){
+            
+        }
+        else{
+          $available_tables[$row->id]=$row->size;
+        }
+      }
+    }
+    asort($available_tables);
+    return $available_tables;
+  }
 }
