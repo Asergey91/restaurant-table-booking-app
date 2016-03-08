@@ -20,7 +20,7 @@ $(document).ready(function(){
     });
     $.ajax({
       type: "POST",
-      url: "https://code-igniter-blog-asergey91.c9users.io/index.php/reservation/make_reservation",
+      url: BASE_URL+"index.php/reservation/make_reservation",
       dataType: 'json',
       data: {
         email: values[0],

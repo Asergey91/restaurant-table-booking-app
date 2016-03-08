@@ -4,6 +4,7 @@ class Reservation_model extends CI_Model {
   public function __construct(){
     parent::__construct();
     $this->load->database();
+    date_default_timezone_set('CET');
   }
   public function find($id){
     $query=$this->db->get_where('reservation', ['id' => $id]);
@@ -11,7 +12,7 @@ class Reservation_model extends CI_Model {
   }
   public function get_today(){
     $today_start=strtotime(8 . ':00:00');
-    $today_end=strtotime('+11 hours', $today_start);
+    $today_end=strtotime('+12 hours', $today_start);
     //$today_start=strtotime(date('Y-m-d'));
     //$today_end=$today_start+(11*60*60);
     $res_query=$this->db->get_where('reservation', [
@@ -23,6 +24,7 @@ class Reservation_model extends CI_Model {
       $cus_query=$this->db->get_where('customer', ['id'=>$res_row['customer_id']]);
       $tab_query=$this->db->get_where('physical_table', ['id'=>$res_row['table_id']]);
       array_push($result, [
+        'res_id'=>$res_row['id'],
         'size'=>$res_row['size'],
         'reservation_id'=>$res_row['id'],
         'table_id'=>$res_row['table_id'],
@@ -84,37 +86,40 @@ class Reservation_model extends CI_Model {
     $this->db->simple_query('SET FOREIGN_KEY_CHECKS = 1;');
     return true;
   }
-  
+  public function delete($id){
+    $this->db->simple_query('SET FOREIGN_KEY_CHECKS = 0;');
+    $this->db->delete('reservation', ['id'=>$id]);
+    $this->db->simple_query('SET FOREIGN_KEY_CHECKS = 1;');
+  }
   //utility functions for validations
   //check tables
   public function available_tables($start, $end, $size){
 	  $res_query1=$this->db->get_where('reservation', [
-	    'start <'=>$start,
-	    'start <='=>$end
+	    'start <='=>$start,
+	    'end >'=>$start
 	  ])->result_array();
 	  $res_query2=$this->db->get_where('reservation', [
-	    'end >='=>$start,
-	    'end >'=>$end
+	    'start <'=>$end,
+	    'end >='=>$end
 	  ])->result_array();
+	  $res_query=array_merge($res_query1, $res_query2);
 	  $tab_query=$this->db->get_where('physical_table', [
 	    'size >='=>$size
 	  ])->result_array();
-	  $query=array_merge($res_query1, $res_query2, $tab_query);
 	  $available_tables=[];
-	  foreach($query as $row){
-	    if(isset($row['table_id'])){
-	      $available_tables[$row['table_id']]=0;
-	    }
-	    if(isset($row['name'])){
-	      $available_tables[$row['id']]=$row['size'];
+	  foreach($tab_query as $tab_row){
+	    $available_tables[$tab_row['id']]=$tab_row['size'];
+	    foreach($res_query as $res_row){
+	      if($tab_row['id']==$res_row['table_id']){
+	        unset($available_tables[$tab_row['id']]);
+	      }
 	    }
 	  }
-	  
+	  if (empty($available_tables)){
+	    return false;
+	  }
 	  $available_tables = array_filter($available_tables);
 	  asort($available_tables);
-    if(!empty($available_tables)){
-      return [true, $available_tables];
-    }
     return [true, $available_tables];
   }
 }

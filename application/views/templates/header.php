@@ -28,6 +28,11 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.9/js/ripples.min.js"></script>
   
   <!-- My JS -->
+  <script>
+    var BASE_URL=<?php echo json_encode($base_url); ?>;
+    console.log(BASE_URL);
+  </script>
+  </script>
   <script src='../../assets/js/script.js'></script>
 </head>
 <body>
