@@ -1,9 +1,9 @@
 for local installation:
 
 For codeigniter
-setup config.php and databse.php
+setup application/config/config.php and application/config/databse.php
 
 For database
 $php index.php setup install
 then
-$$php index.php setup seed
+$php index.php setup seed
