@@ -119,6 +119,5 @@ $db['heroku'] = [
 	'compress' => FALSE,
 	'stricton' => FALSE,
 	'failover' => array(),
-	'save_queries' => TRUE,
-	'port' => 3306
+	'save_queries' => TRUE
 ];
