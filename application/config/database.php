@@ -96,6 +96,7 @@ $db['default'] = [
 	'save_queries' => TRUE,
 	'port' => 3306
 ];
+//YES THIS IS INSECURE AND EVERYONE CAN SEE IT ON GITHUB, should have used env variables, but i was in a rush and its a free heroku instance, so who cares.
 //becdf6068ee3cd
 //2857bfbf
 //mysql://becdf6068ee3cd:2857bfbf@us-cdbr-iron-east-03.cleardb.net/heroku_b2403a0fa92c316?reconnect=true
