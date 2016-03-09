@@ -70,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
-$active_group = 'production';
+$active_group = 'default';
 
 $query_builder = TRUE;
 
@@ -80,7 +80,7 @@ $username = $url["user"];
 $password = $url["pass"];
 $db = substr($url["path"], 1);
 
-$db['production'] = array(
+$db['default'] = [
 	'dsn'			 => $url,
 	'hostname' => $server,
 	'username' => $username,
@@ -101,4 +101,4 @@ $db['production'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE,
 	'port' => 3306
-);
+];
