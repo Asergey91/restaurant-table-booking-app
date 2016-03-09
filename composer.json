@@ -15,10 +15,10 @@
 		"respect/validation": "^1.0",
 		"egulias/email-validator": "^1.2"
 	},
-	"require-dev": {
+	"require": {
 		"mikey179/vfsStream": "1.1.*"
 	},
-	"require-dev": {
+	"require": {
         "fzaninotto/Faker": "dev-master"
     }
 }

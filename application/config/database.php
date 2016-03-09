@@ -81,7 +81,7 @@ $password = $url["pass"];
 $db = substr($url["path"], 1);
 
 $db['default'] = array(
-	'dsn'	=> '',
+	'dsn'			 => '',
 	'hostname' => $server,
 	'username' => $username,
 	'password' => $password,
