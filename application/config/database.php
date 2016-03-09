@@ -80,7 +80,7 @@ $username = $url["user"];
 $password = $url["pass"];
 $db = substr($url["path"], 1);
 
-$db['default'] = array(
+$db['production'] = array(
 	'dsn'			 => $url,
 	'hostname' => $server,
 	'username' => $username,
