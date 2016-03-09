@@ -11,12 +11,7 @@ class Reservation extends CI_Controller {
 	  date_default_timezone_set('CET');
 	  $this->load->helper('url');
 	}
-	public function main_view(){
-	  $data['base_url']=base_url();
-	  $this->load->view('templates/header', $data);
-	  $this->load->view('reservation/main_view', $data);
-	  $this->load->view('templates/footer');
-	}
+	
 	public function owner_view(){
 	  $data['reservations']=$this->reservation_model->get_today();
 	  $data['base_url']=base_url();

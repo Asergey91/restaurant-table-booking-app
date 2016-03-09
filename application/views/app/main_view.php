@@ -1,6 +1,6 @@
 <div class='container-fluid'>
   <div class='row'>
-    <div class='col-xs-10 col-xs-offset-1  col-md-8 col-md-offset-2 col-lg-4 col-lg-offset-4'>
+    <div class='col-xs-10 col-xs-offset-1  col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3'>
       <div class='well customer_input'>
         <h2 class='text-left'>Hello!</h2><hr>
         <h4>
@@ -10,7 +10,7 @@
           <b>Technologies Used:</b> PHP, CodeIgniter, JS, AJAX, Bootstrap<br><br>
           <b>Methodologies:</b> MVC (kinda...), Material design, Responsive design<br><hr>
           <h2 class='text-right'>
-            <a href='<?php echo $base_url?>index.php/reservation/customer_view' class="btn btn-raised btn-primary"> Customer-view </a>
+            <a href='<?php echo $base_url?>customer' class="btn btn-raised btn-primary"> Customer-view </a>
             <a href='<?php echo $base_url?>index.php/reservation/owner_view' class="btn btn-raised btn-primary"> Admin-view </a>
             <a href='https://github.com/Asergey91/restaurant-table-booking-app' class="btn btn-raised btn-primary"> Github </a>
           </h2>
