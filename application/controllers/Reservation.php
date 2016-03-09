@@ -35,7 +35,7 @@ class Reservation extends CI_Controller {
 	public function delete(){
 	  $input=$this->input->get();
 	  $this->reservation_model->delete($input['id']);
-	  $this->owner_view();
+	  redirect('/reservation/owner_view');
 	}
 	
 	public function make_reservation(){

@@ -36,7 +36,7 @@ class Setup_model extends CI_Model {
     //physical_tables
     'CREATE TABLE '.$this->tables[2].' (
       id int(11) NOT NULL AUTO_INCREMENT,
-      name varchar(25) NOT NULL,
+      number int(11) NOT NULL,
       size tinyint(2),
       PRIMARY KEY (id)
     );',
@@ -101,8 +101,8 @@ class Setup_model extends CI_Model {
     for($i=0; $i<20; $i++){
       $tn=$this->faker->randomElement($array = [2, 4, 6, 8, 2, 4, 6, 2, 4, 2]);
       $data = [
-        'name'=>'Table n. '.($i+1).' (capacity:'.$tn.')',
-        'size'=>$tn
+        'size'=>$tn,
+        'number'=>$i+1
       ];
       $this->db->insert($this->tables[2], $data);
     }

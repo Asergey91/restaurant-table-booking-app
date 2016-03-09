@@ -31,7 +31,7 @@ class Reservation_model extends CI_Model {
         'customer_id'=>$res_row['customer_id'],
         'start_time'=>date('H:i', $res_row['start']),
         'end_time'=>$res_row['end'],
-        'table_name'=>$tab_query->result_array()[0]['name'],
+        'table_name'=>'Table num. '.$tab_query->result_array()[0]['number'].' (capacity: '.$tab_query->result_array()[0]['size'].')',
         'customer_fname'=>$cus_query->result_array()[0]['first_name'],
         'customer_lname'=>$cus_query->result_array()[0]['last_name'],
         'customer_phone'=>$cus_query->result_array()[0]['tel'],
