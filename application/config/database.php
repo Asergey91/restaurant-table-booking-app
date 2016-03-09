@@ -70,11 +70,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
-$active_group = 'heroku';
+$active_group = 'c9';
 
 $query_builder = TRUE;
 
-$db['default'] = [
+$db['c9'] = [
 	'dsn'			 => '',
 	'hostname' => 'localhost',
 	'username' => 'asergey91',
