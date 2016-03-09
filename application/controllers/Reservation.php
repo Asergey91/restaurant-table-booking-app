@@ -14,6 +14,12 @@ class Reservation extends CI_Controller {
 	
 	public function owner_view(){
 	  $data['reservations']=$this->reservation_model->get_today();
+	  
+	  function sort_time($a, $b) {
+      return $a['start_time'] - $b['start_time'];
+    }
+    usort($data['reservations'], 'sort_time');
+    
 	  $data['base_url']=base_url();
 	  $this->load->view('templates/header', $data);
 	  $this->load->view('reservation/owner_view', $data);

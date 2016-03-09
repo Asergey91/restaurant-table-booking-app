@@ -4,9 +4,8 @@
       <div class='well owner_panel'>
         <h1 class='text-center'>Today's reservations</h1>
         <h2 class='text-center'>
-          <a href='<?php echo $base_url?>index.php/reservation/owner_view' class="btn btn-raised btn-primary">Today's reservations</a>
-          <a href='#' class="btn btn-raised btn-primary">Your tables</a><br>
-          <a href='<?php echo $base_url?>index.php/reservation/customer_view' class="btn btn-success btn-fab"><span style='margin: 14px 0 0 2px'class="glyphicon glyphicon-plus"></span></a>
+          
+          <a href='<?php echo $base_url?>index.php/reservation/customer_view' class="btn btn-success btn-fab"><span style='margin: 14px 0 0 2px'class="glyphicon glyphicon-plus"></span></a><br><br>
         </h2>
         <div class='row'>
         <?php foreach ($reservations as $res): ?>

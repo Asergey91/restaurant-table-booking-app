@@ -122,7 +122,7 @@ class Setup_model extends CI_Model {
             'customer_id'=>$this->faker->unique()->numberBetween($min = 1, $max = 200)
           ];
           $temp=$this->available_tables($data['start'], $data['end'], $data['size']);
-          if(!false){
+          if($temp!=false){
             $data['table_id']=array_keys($temp)[0];
             $this->db->insert($this->tables[4], $data);
             var_dump($temp);
