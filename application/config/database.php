@@ -74,18 +74,12 @@ $active_group = 'default';
 
 $query_builder = TRUE;
 
-$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-$server = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$db = substr($url["path"], 1);
-
 $db['default'] = [
-	'dsn'			 => $url,
-	'hostname' => $server,
-	'username' => $username,
-	'password' => $password,
-	'database' => $db,
+	'dsn'			 => '',
+	'hostname' => 'localhost',
+	'username' => 'asergey91',
+	'password' => '',
+	'database' => 'codeigniter',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
