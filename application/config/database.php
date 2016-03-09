@@ -74,7 +74,7 @@ $active_group = 'c9';
 
 $query_builder = TRUE;
 
-$db['c9'] = [
+$db['heroku'] = [
 	'dsn'			 => '',
 	'hostname' => 'localhost',
 	'username' => 'asergey91',
