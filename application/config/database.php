@@ -98,11 +98,11 @@ $db['c9'] = [
 ];
 
 $db['heroku'] = [
-	'dsn'			 => getenv("CLEARDB_DATABASE_URL"),
-	'hostname' => '',
-	'username' => '',
-	'password' => '',
-	'database' => '',
+	'dsn'			 => '',
+	'hostname' => 'us-cdbr-iron-east-03.cleardb.net',
+	'username' => 'be82443f5ebe67',
+	'password' => 'a720d736',
+	'database' => 'heroku_a74e4b7e92ac879',
 	'dbdriver' => '',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
