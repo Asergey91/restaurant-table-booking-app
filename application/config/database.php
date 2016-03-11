@@ -70,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
-$active_group = 'heroku';
+$active_group = 'c9';
 
 $query_builder = TRUE;
 
@@ -99,10 +99,10 @@ $db['c9'] = [
 
 $db['heroku'] = [
 	'dsn'			 => '',
-	'hostname' => parse_url(getenv("CLEARDB_DATABASE_URL"))['host'],
-	'username' => parse_url(getenv("CLEARDB_DATABASE_URL"))['user'],
-	'password' => parse_url(getenv("CLEARDB_DATABASE_URL"))['pass'],
-	'database' => substr(parse_url(getenv("CLEARDB_DATABASE_URL"))['path'], 1),
+	'hostname' => '',
+	'username' => '',
+	'password' => '',
+	'database' => '',
 	'dbdriver' => '',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
