@@ -97,20 +97,12 @@ $db['c9'] = [
 	'port' => 3306
 ];
 
-
-
-$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-$server = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$db = substr($url["path"], 1);
-
 $db['heroku'] = [
 	'dsn'			 => '',
-	'hostname' => $server,
-	'username' => $username,
-	'password' => $password,
-	'database' => $db,
+	'hostname' => parse_url(getenv("CLEARDB_DATABASE_URL"))['host'],
+	'username' => parse_url(getenv("CLEARDB_DATABASE_URL"))['user'],
+	'password' => parse_url(getenv("CLEARDB_DATABASE_URL"))['pass'],
+	'database' => substr(parse_url(getenv("CLEARDB_DATABASE_URL"))['path'], 1),
 	'dbdriver' => '',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
