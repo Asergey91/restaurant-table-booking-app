@@ -96,17 +96,14 @@ $db['c9'] = [
 	'save_queries' => TRUE,
 	'port' => 3306
 ];
-//YES THIS IS INSECURE AND EVERYONE CAN SEE IT ON GITHUB, should have used env variables, but i was in a rush and its a free heroku instance, so who cares.
-//becdf6068ee3cd
-//2857bfbf
-//mysql://becdf6068ee3cd:2857bfbf@us-cdbr-iron-east-03.cleardb.net/heroku_b2403a0fa92c316?reconnect=true
+
 $db['heroku'] = [
-	'dsn'			 => '',
-	'hostname' => 'us-cdbr-iron-east-03.cleardb.net',
-	'username' => 'becdf6068ee3cd',
-	'password' => '2857bfbf',
-	'database' => 'heroku_b2403a0fa92c316',
-	'dbdriver' => 'mysqli',
+	'dsn'			 => getenv("CLEARDB_DATABASE_URL"),
+	'hostname' => '',
+	'username' => '',
+	'password' => '',
+	'database' => '',
+	'dbdriver' => '',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
