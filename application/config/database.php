@@ -70,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
-$active_group = 'openshift';
+$active_group = 'c9';
 
 $query_builder = TRUE;
 
@@ -95,6 +95,31 @@ $db['c9'] = [
 	'failover' => array(),
 	'save_queries' => TRUE,
 	'port' => 3306
+];
+//YES THIS IS INSECURE AND EVERYONE CAN SEE IT ON GITHUB, should have used env variables, but i was in a rush and its a free heroku instance, so who cares.
+//becdf6068ee3cd
+//2857bfbf
+//mysql://becdf6068ee3cd:2857bfbf@us-cdbr-iron-east-03.cleardb.net/heroku_b2403a0fa92c316?reconnect=true
+$db['heroku'] = [
+	'dsn'			 => '',
+	'hostname' => 'us-cdbr-iron-east-03.cleardb.net',
+	'username' => 'becdf6068ee3cd',
+	'password' => '2857bfbf',
+	'database' => 'heroku_b2403a0fa92c316',
+	'dbdriver' => 'mysqli',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
 ];
 
 $db['openshift'] = [
