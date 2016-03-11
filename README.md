@@ -1,9 +1,15 @@
-for local installation:
+For local installation:
+======
+For codeigniter configuration
+------
+setup  in application/config/config.php the $base_url variable and in application/config/databse.php ther $db variable
 
-For codeigniter
-setup application/config/config.php and application/config/databse.php
+For seeding and setting up the database
+------
+run
 
-For database
 $php index.php setup install
+
 then
+
 $php index.php setup seed
