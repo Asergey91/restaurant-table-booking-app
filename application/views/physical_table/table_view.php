@@ -5,8 +5,8 @@
         <a href='<?php echo $base_url?>index.php/reservation/owner_view' class="btn btn-raised btn-primary pull-right">Manage Reservations</a><br><br>
         <h1 class='text-center'>Your Tables</h1>
         <h2 class='text-center'>
-          <a href='#' class="btn btn-warning btn-fab" data-toggle="modal" data-target="#create_modal"><span style='margin: 14px 0 0 2px'class="glyphicon glyphicon-plus"></span></a><br><br>
-        </h2>
+          <span class="btn btn-warning btn-fab" data-toggle="modal" data-target="#create_modal"><span style='margin: 14px 0 0 2px'class="glyphicon glyphicon-plus"></span></a><br><br>
+        </h2><br>
         
         <!-- Modal -->
           <div class="modal fade" id="create_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

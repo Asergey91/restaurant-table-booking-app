@@ -119,7 +119,7 @@ class Reservation extends CI_Controller {
     $hour=intval(date('H', $time[2]));
     
     if (! v::intVal()->between($time[0], $time[1])->validate($time[2])){
-      $result[1]='Whoops, please enter a valid date';
+      $result[1]='Whoops, please enter a time+date that hasn\'t already passed';
 	    return $result;
     }
     

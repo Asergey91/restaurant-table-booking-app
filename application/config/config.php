@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://resmaster-98535.herokuapp.com/';
+$config['base_url'] = 'http://citest-asergey91.rhcloud.com/';
 
 /*
 |--------------------------------------------------------------------------

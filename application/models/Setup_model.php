@@ -231,3 +231,4 @@ class Setup_model extends CI_Model {
     return $available_tables;
   }*/
 }
+ 
