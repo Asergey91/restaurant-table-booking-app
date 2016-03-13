@@ -157,8 +157,10 @@ class Setup_model extends CI_Model {
     $this->db->simple_query('SET FOREIGN_KEY_CHECKS = 1;');
 	}
 	
-	
+	//this function takes in the reservation start and end time and the size of the reservation
+	//it returns an array of tables that are available at that time, sorted by size smallest first
 	public function available_tables($start, $end, $size){
+	  //get tables taken during the reservation time and put them into $res_query
 	  $res_query1=$this->db->get_where('reservation', [
 	    'start <='=>$start,
 	    'end >'=>$start
@@ -168,12 +170,15 @@ class Setup_model extends CI_Model {
 	    'end >='=>$end
 	  ])->result_array();
 	  $res_query=array_merge($res_query1, $res_query2);
+	  //get all tables which size is bigger or = than the party size of the reservation
 	  $tab_query=$this->db->get_where('physical_table', [
 	    'size >='=>$size
 	  ])->result_array();
 	  $available_tables=[];
+	  //set all tables which are big enough as available
 	  foreach($tab_query as $tab_row){
 	    $available_tables[$tab_row['id']]=$tab_row['size'];
+	    //remove tables from the array which are taken by other reservations
 	    foreach($res_query as $res_row){
 	      if($tab_row['id']==$res_row['table_id']){
 	        unset($available_tables[$tab_row['id']]);

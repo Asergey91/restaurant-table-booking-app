@@ -93,6 +93,8 @@ class Reservation_model extends CI_Model {
   }
   //utility functions for validations
   //check tables
+  //duplicate of function in setup_model because aparently its a bad thing to call a model from another model in CI
+  //description on how it works can be found in setup_model
   public function available_tables($start, $end, $size){
 	  $res_query1=$this->db->get_where('reservation', [
 	    'start <='=>$start,

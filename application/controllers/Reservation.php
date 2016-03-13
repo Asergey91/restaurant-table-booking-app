@@ -58,8 +58,6 @@ class Reservation extends CI_Controller {
 	  }
 	}
 	
-	// NOTE: Very long function, should be subdivided into smaller functions for
-	// easier maintenance
 	public function validate_reservation($input){
 	  $result=['fail', 'There was an error!'];
 	  
@@ -107,7 +105,6 @@ class Reservation extends CI_Controller {
      * is the submitted time.
      * $time array: 0=now, 1=distant year 2100, 2=submitted time, 3=end of reservation 
      */
-    // NOTE: I think this whole section should be moved to its own function
     $time=[
       strtotime("now"), 
       4102448461,
